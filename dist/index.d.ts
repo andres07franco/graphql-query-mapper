@@ -1,1 +1,1 @@
-export { GraphqlQuery, GraphqlMutation, parseGraphEnum } from './graphql-query.decorator';
+export { GraphqlQuery, GraphqlMutation, parseGraphEnum, GraphqlComplexQuery } from './graphql-query.decorator';

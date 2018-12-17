@@ -19,6 +19,21 @@ class GraphgqlQueryStore {
 }
 GraphgqlQueryStore.query = "";
 GraphgqlQueryStore.runningComplexQuery = false;
+function mapReturn(obj) {
+    var returnNames = Object.keys(obj).map(key => {
+        if (typeof obj[key] == 'object' || obj[key] instanceof Array) {
+            if (obj[key] instanceof Array) {
+                if (obj[key].length > 0)
+                    return key + " {" + mapReturn(obj[key][0]) + "} ";
+            }
+            else if (typeof obj[key] == 'object' && obj[key] != null) {
+                return key + " {" + mapReturn(obj[key]) + "} ";
+            }
+        }
+        return key;
+    }).join(" ");
+    return returnNames;
+}
 function GraphqlQuery(uri, ctor) {
     var objReturn = new ctor();
     return function (target, key, descriptor) {
@@ -28,7 +43,7 @@ function GraphqlQuery(uri, ctor) {
             descriptor = Object.getOwnPropertyDescriptor(target, key);
         }
         var types = Reflect.getMetadata("design:paramtypes", target, key);
-        var returnNames = Object.keys(objReturn).map(key => key).join(" ");
+        var returnNames = mapReturn(objReturn);
         var paramTypes = types.map(a => a.name);
         var paramNames = getParamsName(descriptor).map(a => a);
         descriptor.value = function () {
