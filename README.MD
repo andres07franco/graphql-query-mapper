@@ -38,15 +38,13 @@ Create the model
         name:string = null
     }
 
-    export class GraphModule {
-    }
-
 ```
 Create the repository
 ```typescript
     //The repository mapping
-    const pokeApi = 'https://graphql-pokemon.now.sh/?'
-     class PokemonGraphQlRespostory{
+     const pokeApi = 'https://graphql-pokemon.now.sh/?'
+     
+     class PokemonGraphQlRespository{
 
         @GraphqlQuery(pokeApi,Pokemon)
         static pokemon(name: string = null):Observable<Pokemon>{ return }
@@ -55,10 +53,10 @@ Create the repository
 Run 
   ```typescript
     //Run
-    PokemonGraphQlRespostory.pokemon('Charmander')
-                            .subscribe(poke=>{
+    PokemonGraphQlRespository.pokemon('Charmander')
+                             .subscribe(poke=>{
                                     console.log(poke); 
-                            })
+                             })
 
 /* Query 
 {
