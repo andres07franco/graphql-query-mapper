@@ -37,7 +37,6 @@ Create the model
     class PokemonEvolutionRequirement{
         name:string = null
     }
-
 ```
 Create the repository
 ```typescript
@@ -45,7 +44,6 @@ Create the repository
      const pokeApi = 'https://graphql-pokemon.now.sh/?'
      
      class PokemonGraphQlRespository{
-
         @GraphqlQuery(pokeApi,Pokemon)
         static pokemon(name: string = null):Observable<Pokemon>{ return }
     }
@@ -101,8 +99,6 @@ RESPONSE
     }
     }
 */
-
-
   ```
 ## Contributors
 > Carlos Andrés Marriaga  Franco @andres07franco
